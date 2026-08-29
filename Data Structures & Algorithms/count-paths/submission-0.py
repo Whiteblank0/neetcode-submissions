@@ -1,0 +1,14 @@
+from functools import cache
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        @cache
+        def dfs(r, c):
+            if r == m - 1 and c == n - 1:
+                return 1
+            if r >= m or r < 0 or c >= n or c < 0:
+                return 0
+            
+            return dfs(r + 1, c) + dfs(r, c + 1)
+        
+        return dfs(0, 0)
